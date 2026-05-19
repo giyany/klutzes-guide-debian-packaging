@@ -15,4 +15,4 @@ First, I cloned the repository locally
 cd wasmi``
 
 
-[^1] I'm not sure why that's needed, as I inherited this part of the project. The Changelog files did not provide clear answers. 
+[^1]: I'm not sure why that's needed, as I inherited this part of the project. The Changelog files did not provide clear answers. 
