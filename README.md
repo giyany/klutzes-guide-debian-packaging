@@ -6,4 +6,4 @@
 
 ## The Walkthrough
 
-some things
+some thing
