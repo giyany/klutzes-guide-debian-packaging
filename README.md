@@ -38,7 +38,7 @@ I also want to look at the Cargo.lock file, which mentions the exact resolved ve
 
 `` grep -rn "wasmparser" --include="*.lock" .``
 
-<blockquote> ./Cargo.lock:1671: "wasmparser 0.228.0",
+<blockquote> ./Cargo.lock:1671: "wasmparser 0.228.0",\\
  ./Cargo.lock:1681: "wasmparser 0.232.0",
  ./Cargo.lock:1691: "wasmparser 0.240.0",
  ./Cargo.lock:1716: "wasmparser-nostd",
