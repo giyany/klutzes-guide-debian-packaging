@@ -26,11 +26,11 @@ So, I look which Cargo.toml files reference wasmparser (and to which versions):
 ``grep -rn "wasmparser" --include="*.toml" . ``
 
 > ./crates/wasmi/Cargo.toml:25:wasmparser = { workspace = true, features = ["validate", "features"] }  
-> ./crates/wasmi/Cargo.toml:42:    "wasmparser/std",
-> ./crates/wasmi/Cargo.toml:47:    "wasmparser/hash-collections",
-> ./crates/wasmi/Cargo.toml:51:    "wasmparser/prefer-btree-collections",
-> ./crates/wasmi/Cargo.toml:54:simd = ["wasmi_core/simd", "wasmi_ir/simd", "wasmparser/simd"]
-> ./Cargo.toml:48:wasmparser = { version = "0.228.0", default-features = false }
+> ./crates/wasmi/Cargo.toml:42:    "wasmparser/std",  
+> ./crates/wasmi/Cargo.toml:47:    "wasmparser/hash-collections",  
+> ./crates/wasmi/Cargo.toml:51:    "wasmparser/prefer-btree-collections",  
+> ./crates/wasmi/Cargo.toml:54:simd = ["wasmi_core/simd", "wasmi_ir/simd", "wasmparser/simd"]  
+> ./Cargo.toml:48:wasmparser = { version = "0.228.0", default-features = false }  
 
 The output tells me that the project uses wasmparser v.0.228.0, as expected. I also see the workspace uses the validate and features options, as well as others like std and simd. 
 
@@ -38,9 +38,9 @@ I also want to look at the Cargo.lock file, which mentions the exact resolved ve
 
 `` grep -rn "wasmparser" --include="*.lock" .``
 
-<blockquote> ./Cargo.lock:1671: "wasmparser 0.228.0",  
- ./Cargo.lock:1681: "wasmparser 0.232.0",  
- ./Cargo.lock:1691: "wasmparser 0.240.0",  
+> ./Cargo.lock:1671: "wasmparser 0.228.0",  
+> ./Cargo.lock:1681: "wasmparser 0.232.0",  
+> ./Cargo.lock:1691: "wasmparser 0.240.0",    
  ./Cargo.lock:1716: "wasmparser-nostd",  
  ./Cargo.lock:1732: "wasmparser 0.228.0",  
  ./Cargo.lock:1746: "wasmparser 0.228.0",  
