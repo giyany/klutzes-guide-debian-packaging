@@ -25,7 +25,7 @@ So, I look which Cargo.toml files reference wasmparser (and to which versions):
 
 ``grep -rn "wasmparser" --include="*.toml" . ``
 
-> ./crates/wasmi/Cargo.toml:25:wasmparser = { workspace = true, features = ["validate", "features"] }
+> ./crates/wasmi/Cargo.toml:25:wasmparser = { workspace = true, features = ["validate", "features"] }  
 > ./crates/wasmi/Cargo.toml:42:    "wasmparser/std",
 > ./crates/wasmi/Cargo.toml:47:    "wasmparser/hash-collections",
 > ./crates/wasmi/Cargo.toml:51:    "wasmparser/prefer-btree-collections",
