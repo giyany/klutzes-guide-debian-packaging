@@ -41,21 +41,21 @@ I also want to look at the Cargo.lock file, which mentions the exact resolved ve
 > ./Cargo.lock:1671: "wasmparser 0.228.0",  
 > ./Cargo.lock:1681: "wasmparser 0.232.0",  
 > ./Cargo.lock:1691: "wasmparser 0.240.0",    
- ./Cargo.lock:1716: "wasmparser-nostd",  
- ./Cargo.lock:1732: "wasmparser 0.228.0",  
- ./Cargo.lock:1746: "wasmparser 0.228.0",  
- ./Cargo.lock:1892:name = "wasmparser"  
- ./Cargo.lock:1903:name = "wasmparser"  
- ./Cargo.lock:1913:name = "wasmparser"
- ./Cargo.lock:1926:name = "wasmparser-nostd"
- ./Cargo.lock:1942: "wasmparser 0.228.0",
- ./Cargo.lock:1953: "wasmparser 0.240.0",
- ./Cargo.lock:1984: "wasmparser 0.240.0",
- ./Cargo.lock:2017: "wasmparser 0.240.0",
- ./Cargo.lock:2042: "wasmparser 0.240.0",
- ./Cargo.lock:2137: "wasmparser 0.240.0",
- ./Cargo.lock:2250: "wasmparser 0.240.0",
-</blockquote>
+> ./Cargo.lock:1716: "wasmparser-nostd",    
+> ./Cargo.lock:1732: "wasmparser 0.228.0",   
+> ./Cargo.lock:1746: "wasmparser 0.228.0",  
+> ./Cargo.lock:1892:name = "wasmparser"  
+> ./Cargo.lock:1903:name = "wasmparser"  
+> ./Cargo.lock:1913:name = "wasmparser"  
+> ./Cargo.lock:1926:name = "wasmparser-nostd"  
+> ./Cargo.lock:1942: "wasmparser 0.228.0",  
+> ./Cargo.lock:1953: "wasmparser 0.240.0",  
+> ./Cargo.lock:1984: "wasmparser 0.240.0",  
+> ./Cargo.lock:2017: "wasmparser 0.240.0",  
+> ./Cargo.lock:2042: "wasmparser 0.240.0",  
+> ./Cargo.lock:2137: "wasmparser 0.240.0",  
+> ./Cargo.lock:2250: "wasmparser 0.240.0",  
+
 
 Wow, that's quite the picture. wasmi uses 3 different version of wasmparser, possibly for other dependencies that need specific versions. There's also wasmparser-nostd, which we may have to look at later.
 
