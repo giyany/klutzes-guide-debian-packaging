@@ -1,6 +1,12 @@
 # The Complete Klutz's Guide for Packaing for Debian
 
-## The Why
+## What is packaging?
+
+*A Debian package is a collection of files that allow for applications or libraries to be distributed via the package management system. The aim of packaging is to allow the automation of installing, upgrading, configuring, and removing computer programs for Debian in a consistent manner.*
+
+In other words, when software is packaged for an OS, it can be easily installed and automatically upgraded. It's more lightweight than containers and allows the user to install using the OS management system - in Linux, that's `apt`.
+
+## Why package for Debian?
 
 ## The How
 
