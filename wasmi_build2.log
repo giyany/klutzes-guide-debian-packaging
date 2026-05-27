@@ -1,0 +1,83 @@
+   Compiling wasmi v1.0.9 (/home/gil/Zellij_social/packaging/wasmi/crates/wasmi)
+error[E0046]: not all trait items implemented, missing: `visit_typed_select_multi`
+  --> crates/wasmi/src/engine/translator/func/visit.rs:80:1
+   |
+80 | impl<'a> VisitOperator<'a> for FuncTranslator {
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ missing `visit_typed_select_multi` in implementation
+   |
+   = help: implement the missing item: `fn visit_typed_select_multi(&mut self, _: Vec<wasmparser::ValType>) -> <Self as VisitOperator<'a>>::Output { todo!() }`
+
+error[E0599]: no method named `ensure_end` found for struct `OperatorsReader<'a>` in the current scope
+  --> crates/wasmi/src/engine/translator/driver.rs:87:16
+   |
+87 |         reader.ensure_end()?;
+   |                ^^^^^^^^^^ method not found in `OperatorsReader<'_>`
+
+error[E0599]: no method named `finish` found for struct `wasmparser::FuncValidator<T>` in the current scope
+   --> crates/wasmi/src/engine/translator/mod.rs:219:24
+    |
+219 |         self.validator.finish(pos)?;
+    |                        ^^^^^^ method not found in `wasmparser::FuncValidator<ValidatorResources>`
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `WasmTranslator` defines an item `finish`, perhaps you need to implement it
+   --> crates/wasmi/src/engine/translator/mod.rs:78:1
+    |
+ 78 | / pub trait WasmTranslator<'parser>:
+ 79 | |     VisitOperator<'parser, Output = Result<(), Error>> + VisitSimdOperator<'parser>
+    | |___________________________________________________________________________________^
+
+error[E0599]: no method named `ensure_end` found for struct `OperatorsReader<'a>` in the current scope
+   --> crates/wasmi/src/module/init_expr.rs:345:14
+    |
+344 | /         reader
+345 | |             .ensure_end()
+    | |             -^^^^^^^^^^ method not found in `OperatorsReader<'_>`
+    | |_____________|
+    |
+
+error[E0061]: this method takes 1 argument but 2 arguments were supplied
+   --> crates/wasmi/src/module/parser/mod.rs:454:23
+    |
+454 |             validator.code_section_start(count, &range)?;
+    |                       ^^^^^^^^^^^^^^^^^^ ----- unexpected argument #1 of type `u32`
+    |
+note: method defined here
+   --> /home/gil/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wasmparser-0.239.0/src/validator.rs:978:12
+    |
+978 |     pub fn code_section_start(&mut self, range: &Range<usize>) -> Result<()> {
+    |            ^^^^^^^^^^^^^^^^^^
+help: remove the extra argument
+    |
+454 -             validator.code_section_start(count, &range)?;
+454 +             validator.code_section_start(&range)?;
+    |
+
+error[E0382]: use of moved value: `tys`
+   --> crates/wasmi/src/engine/translator/mod.rs:270:17
+    |
+266 |         fn $visit(&mut self $($(,$arg: $argty)*)?) -> Self::Output {
+    |                                  ---- move occurs because `tys` has type `Vec<wasmparser::ValType>`, which does not implement the `Copy` trait
+...
+269 |                 move |validator| validator.visitor(offset).$visit($($($arg),*)?),
+    |                 ---------------- value moved into closure here        ---- variable moved due to use in closure
+270 |                 move |translator| translator.$visit($($($arg),*)?),
+    |                 ^^^^^^^^^^^^^^^^^                       ---- use occurs due to use in closure
+    |                 |
+    |                 value used here after move
+...
+299 |     wasmparser::for_each_visit_operator!(impl_visit_operator);
+    |     --------------------------------------------------------- in this macro invocation
+    |
+    = note: this error originates in the macro `impl_visit_operator` which comes from the expansion of the macro `wasmparser::for_each_visit_operator` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider cloning the value before moving it into the closure
+    |
+269 ~                 {
+270 +                 let value = tys.clone();
+271 ~                 move |validator| validator.visitor(offset).$visit($($(value),*)?)
+272 ~                 },
+    |
+
+Some errors have detailed explanations: E0046, E0061, E0382, E0599.
+For more information about an error, try `rustc --explain E0046`.
+error: could not compile `wasmi` (lib) due to 6 previous errors
