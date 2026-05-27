@@ -53,6 +53,14 @@ So if our code uses a library that's not in Debian's official repository `apt`, 
 
 We first need to know the full dependency tree. Generally, we'll want an overview by the package manage. In Rust, the package manager is `cargo` so we'll use [`cargo-debstatus`](https://crates.io/crates/cargo-debstatus)
 
+installing with
+
+``cargo install cargo-debstatus``
+
+then cloning [zellij](https://github.com/zellij-org/zellij), working on the latest (at the time of writing) release v0.44.3
+
+``git clone https://github.com/zellij-org/zellij.git --branch v0.44.3`` 
+
 ### Package the dependencies
 
 
