@@ -23,7 +23,7 @@ The complete walkthrough depends on what you're packaging - the language it's wr
 
 1. Write software. :ballot_box_with_check: Done: we're packaging [zellij](https://zellij.dev/).
 2. Check if the project is being [worked on](https://www.debian.org/devel/wnpp/being_packaged)[^2]. If it is, you can still help.
-3. [List the dependency Tree](#list-the-dependency-tree). Our code depends on library
+3. [List the dependency Tree](#list-the-dependency-tree). 
 4. Package the dependencies - or
 5. Bundle everything into a package
 6. Publish the repository in the Debian unstable version 
@@ -32,10 +32,14 @@ The complete walkthrough depends on what you're packaging - the language it's wr
 6. Celebrate - optionally with a trip to [Italy](https://upload.wikimedia.org/wikipedia/commons/9/99/Collage_Roma.jpg)
 
 
-## The Walkthrough
+## A Walkthrough
 
 ### List the Dependency Tree
 
+Our code depends on library A, which depends on library B. Library B may dependen on other libraries. This chain of dependencies is called the **dependency tree**. Debian's package manager `apt` 
+
+
+### Package the dependencies
 
 
 ### [wasmparser](https://github.com/bytecodealliance/wasm-tools) in [wasmi](https://github.com/wasmi-labs/wasmi)
