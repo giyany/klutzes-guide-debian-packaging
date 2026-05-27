@@ -12,7 +12,7 @@ That's a mouthful if you haven't got the technical background. The package is "e
 
 ## Why package for Debian?
 
-To make an application more accessible and to increase user trust. More accessible, because obtaining the application would be smoother. More trustworthy because official repositories are curated by the OS maintainers and must stick to strict guidelines - making it less likely that the installtion would fck things up.
+To make an application more accessible and to increase user trust. More accessible, because obtaining the application would be smoother. More trustworthy because official repositories are curated by the OS maintainers and must stick to strict guidelines[^1] - making it less likely that the installtion would fck things up.
 Debian serves as a base for other popular systems including Ubuntu. Hence, software that's packaged for debian is compatible with many other Linux distributions. Once packaged for Debian, it's much easier to package for Mint and Ubuntu, for example.
 
 ## The How
@@ -25,7 +25,7 @@ Debian serves as a base for other popular systems including Ubuntu. Hence, softw
 3. Package the dependencies
 4. Bundle everything into a package
 5. Publish the repository
-6. Celebrate - optionally with a trip to [Italy]
+6. Celebrate - optionally with a trip to [Italy](https://upload.wikimedia.org/wikipedia/commons/9/99/Collage_Roma.jpg)
 
 
 ## The Walkthrough
