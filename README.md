@@ -8,12 +8,12 @@ In other words, when software is packaged for an OS, it can be easily installed 
 
 *A package consists of one source package, and one or more binary packages. The Debian Policy specifies the standard format for a package, which all packages must follow. Source packages contain the upstream source distribution, configuration for the package build system, list of runtime dependencies and conflicting packages, a machine-readable description of copyright and license information, initial configuration for the software, and more.*[^1]
 
-That's a mouthful if you haven't got the technical background. The package is "everything needed for the installation" - the files, the dependencies, instructions and settings - all bundled. This produces the source package (.dsc file) and binary packages (.deb).
+That's a mouthful if you haven't got the technical background. The package is "everything needed for the installation" - the files, the dependencies, instructions and settings - all bundled. We'll get more into this later, but for now, it's enough to know that packaging produces the source package (.dsc file) and binary packages (.deb).
 
 ## Why package for Debian?
 
-To make an application more accessible and to increase user trust. More accessible, because obtaining it would be smoother and more trustworthy because official repositories are curated by the OS maintainers and must stick to strict guidelines.
-Debian serves as a base for other popular systems including Ubuntu, hence, when software is packaged for debian it's compatible with many other Linux distributions. Once packaged for Debian, it's much easier to package for Mint and Ubuntu.
+To make an application more accessible and to increase user trust. More accessible, because obtaining the application would be smoother. More trustworthy because official repositories are curated by the OS maintainers and must stick to strict guidelines - making it less likely that the installtion would fck things up.
+Debian serves as a base for other popular systems including Ubuntu. Hence, software that's packaged for debian is compatible with many other Linux distributions. Once packaged for Debian, it's much easier to package for Mint and Ubuntu, for example.
 
 ## The How
 
