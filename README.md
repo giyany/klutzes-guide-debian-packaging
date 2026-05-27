@@ -17,6 +17,7 @@ Debian serves as a base for other popular systems including Ubuntu. Hence, softw
 
 ## The How
 
+The complete walkthrough depends on what you're packaging - the language it's written in, the direct dependencies and [whether those dependencies exist in Debian's repository](#list-the-dependency-tree). The steps listed below are specific to packaging [zellij](https://zellij.dev), a large project writted in Rust.
 
 ### The steps
 
