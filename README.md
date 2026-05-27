@@ -2,19 +2,37 @@
 
 ## What is packaging?
 
-*A Debian package is a collection of files that allow for applications or libraries to be distributed via the package management system. The aim of packaging is to allow the automation of installing, upgrading, configuring, and removing computer programs for Debian in a consistent manner.*
+*A Debian package is a collection of files that allow for applications or libraries to be distributed via the package management system. The aim of packaging is to allow the automation of installing, upgrading, configuring, and removing computer programs for Debian in a consistent manner.*[^1]
 
-In other words, when software is packaged for an OS, it can be easily installed and automatically upgraded. It's more lightweight than containers and allows the user to install using the OS management system - in Linux, that's `apt`.
+In other words, when software is packaged for an OS, it can be easily installed and automatically upgraded. It's more lightweight than containers and allows the user to install/remove/update using the OS management system - in Linux, that's `apt`.
+
+*A package consists of one source package, and one or more binary packages. The Debian Policy specifies the standard format for a package, which all packages must follow. Source packages contain the upstream source distribution, configuration for the package build system, list of runtime dependencies and conflicting packages, a machine-readable description of copyright and license information, initial configuration for the software, and more.*[^1]
+
+That's a mouthful if you haven't got the technical background. The package is "everything needed for the installation" - the files, the dependencies, instructions and settings - all bundled. This produces the source package (.dsc file) and binary packages (.deb).
 
 ## Why package for Debian?
 
+To make an application more accessible and to increase user trust. More accessible, because obtaining it would be smoother and more trustworthy because official repositories are curated by the OS maintainers and must stick to strict guidelines.
+Debian serves as a base for other popular systems including Ubuntu, hence, when software is packaged for debian it's compatible with many other Linux distributions. Once packaged for Debian, it's much easier to package for Mint and Ubuntu.
+
 ## The How
+
+
+### The steps
+
+1. Write software
+2. List the dependencies
+3. Package the dependencies
+4. Bundle everything into a package
+5. Publish the repository
+6. Celebrate - optionally with a trip to [Italy]
+
 
 ## The Walkthrough
 
 ### [wasmparser](https://github.com/bytecodealliance/wasm-tools) in [wasmi](https://github.com/wasmi-labs/wasmi)
 
-Zellij depends on wasmi, which uses [wasmparser](https://github.com/bytecodealliance/wasm-tools). Here, I need to update the wasmparser dependency from `0.228` to `0.239`[^1]. 
+Zellij depends on wasmi, which uses [wasmparser](https://github.com/bytecodealliance/wasm-tools). Here, I need to update the wasmparser dependency from `0.228` to `0.239`[^2]. 
 First, I cloned the repository locally:
 
 ``git clone https://github.com/wasmi-labs/wasmi.git``
@@ -70,4 +88,5 @@ Why the different versions? I can spend hours digging the code, or ask the maint
 Next update is when they reply, hopefully. 
 - May 20th 2026 
 
-[^1]: I'm not sure why that's needed, as I inherited this part of the project. The Changelog files did not provide clear answers. 
+[^1] [Debian Intro to packaging](https://wiki.debian.org/Packaging/Intro)
+[^2]: This is a part of the project that I inherited, so I cannot fully explain the dependencies issues here.
