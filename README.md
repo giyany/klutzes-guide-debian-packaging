@@ -88,5 +88,5 @@ Why the different versions? I can spend hours digging the code, or ask the maint
 Next update is when they reply, hopefully. 
 - May 20th 2026 
 
-[^1] [Debian Intro to packaging](https://wiki.debian.org/Packaging/Intro)
+[^1]: [Debian Intro to packaging](https://wiki.debian.org/Packaging/Intro)
 [^2]: This is a part of the project that I inherited, so I cannot fully explain the dependencies issues here.
