@@ -142,9 +142,31 @@ to actually apply the update, I'll run ``cargo`` and see if everything compiles:
 
 `Cargo.toml` would be read, then cargo will download `wasmparser 0.239.0`, update `Cargo.lock` and compile.
 
-The run ended with a list of interesting [errors](wasmi_build.log). There are at least 7 errors, pointing to changes in functions, missing methods and types. This means that `wasmparser` changed its API (Application Programming Interface) between the versions, hence, it's a **breaking change**. We'll need to change the code of `wasmi` to match the new `wasmparser` API.
+The run ended with a list of interesting [errors](wasmi_build1.log). There are at least 7 errors, pointing to changes in functions, missing methods and types. This means that `wasmparser` changed its API (Application Programming Interface) between the versions, hence, it's a **breaking change**. We'll need to change the code of `wasmi` to match the new `wasmparser` API.
 
 **Errors 1 & 2**
+
+These are the same error:
+
+> error[E0425]: cannot find type `Vec` in this scope
+
+in file `crates/wasmi/src/engine/translator/mod.rs:491:5`.
+
+We also have this information,
+
+> = note: this error originates in the macro `wasmparser::for_each_visit_operator` (in Nightly builds, run with -Z macro-backtrace for more info)
+> help: consider importing one of these structs
+>    |
+> 14 + use crate::engine::Vec;
+>    |
+> 14 + use std::vec::Vec;
+>    |
+> 14 + use alloc::vec::Vec;
+
+That's useful: the help suggests we import Vec to make it available. Claude further suggests to use `alloc::vec::Vec;`, because `wasmi` works in environments without a standard library, and alloc is the correct place to import from in such a case.
+
+I open the file and look at the top to find a list of `use` statements, which are the imports. Adding the missing import `use alloc::vec::Vec;`, I save the file and rerun `cargo build`. Now we have 6 [errors](wasmi_build2.log) in the output - that's possibly progress. 
+
 
 [^1]: [Debian Intro to packaging](https://wiki.debian.org/Packaging/Intro)
 [^2]: [Debian Mentors FAQ: How do I make my first package?](https://wiki.debian.org/DebianMentorsFaq#How_do_I_make_my_first_package.3F)
