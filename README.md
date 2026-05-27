@@ -21,8 +21,7 @@ The complete walkthrough depends on what you're packaging - the language it's wr
 
 ### The steps
 
-1. Write software. 
-:ballot_box_with_check: Done: we're packaging [zellij](https://zellij.dev/).
+1. Write software. :ballot_box_with_check: Done: we're packaging [zellij](https://zellij.dev/).
 2. Check if the project is being [worked on](https://www.debian.org/devel/wnpp/being_packaged)[^2]. If it is, you can still help.
 3. [List the dependency Tree](#list-the-dependency-tree). Our code depends on library
 4. Package the dependencies - or
