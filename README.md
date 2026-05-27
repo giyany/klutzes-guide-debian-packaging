@@ -22,22 +22,36 @@ The complete walkthrough depends on what you're packaging - the language it's wr
 ### The steps
 
 1. Write software. :ballot_box_with_check: Done: we're packaging [zellij](https://zellij.dev/).
-2. Check if the project is being [worked on](https://www.debian.org/devel/wnpp/being_packaged)[^2]. If it is, you can still help.
-3. [List the dependency Tree](#list-the-dependency-tree). 
-4. Package the dependencies - or
-5. Bundle everything into a package
-6. Publish the repository in the Debian unstable version 
-7. Have it tested for bugs until the package passes testing.
-8. Publish the repository in the Debian stable version.
-6. Celebrate - optionally with a trip to [Italy](https://upload.wikimedia.org/wikipedia/commons/9/99/Collage_Roma.jpg)
+2. Check if the project is being [worked on](https://www.debian.org/devel/wnpp/being_packaged) or [requested to be worked on](https://www.debian.org/devel/wnpp/requested) [^2]. If it is, you can still help. :ballot_box_with_check:
+3. Consider If you can actually create and maintain the package - including [The Debian Guidelines)[https://wiki.debian.org/DebianMentorsFaq] :ballot_box_with_check:
+4. [File an ITP bug report against WNPP](https://www.debian.org/doc/manuals/developers-reference/pkgs.en.html#newpackage) 
+5. This is also the time to connect with the Debian community and [find a sponsor](https://wiki.debian.org/DebianMentorsFaq#How_do_I_get_a_sponsor_for_my_package.3F)
+
+## Put a package together
+
+6. [List the dependency Tree](#list-the-dependency-tree). 
+7. Package the dependencies - or
+8. Bundle everything into a package
+9. Publish the repository in the Debian unstable version 
+10. Have it tested for bugs until the package passes testing.
+11. Publish the repository in the Debian stable version.
+12. Celebrate - optionally with a trip to [Italy](https://upload.wikimedia.org/wikipedia/commons/9/99/Collage_Roma.jpg)
 
 
 ## A Walkthrough
 
 ### List the Dependency Tree
 
-Our code depends on library A, which depends on library B. Library B may dependen on other libraries. This chain of dependencies is called the **dependency tree**. Debian's package manager `apt` 
+Our code depends on library A, which depends on library B. Library B may dependen on other libraries. This chain of dependencies is called the **dependency tree**. When a user installs something, Debian's package manager `apt` fetches all the dependencies from Debian's official servers. The Debian repository, however, only contains packages that Debian already approved and tested. Not every library will exist there, and if it doesn't, `apt` can't fetch it.
 
+So if our code uses a library that's not in Debian's official repository `apt`, we need to either:
+
++ Package the dependency ourselves
++ Bundle the dependency directly under our package.
+
+..but that's a few steps ahead. 
+
+We first need to know the full dependency tree. Generally, we'll want an overview by the package manage. In Rust, the package manager is `cargo` so we'll use [`cargo-debstatus`](https://crates.io/crates/cargo-debstatus)
 
 ### Package the dependencies
 
