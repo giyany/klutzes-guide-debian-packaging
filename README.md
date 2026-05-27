@@ -20,7 +20,7 @@ Debian serves as a base for other popular systems including Ubuntu. Hence, softw
 
 ### The steps
 
-1. Write software
+1. Write software :ballot_box_with_check:
 2. List the dependencies
 3. Package the dependencies
 4. Bundle everything into a package
