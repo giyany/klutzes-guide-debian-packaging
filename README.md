@@ -61,6 +61,15 @@ then cloning [zellij](https://github.com/zellij-org/zellij), working on the late
 
 ``git clone https://github.com/zellij-org/zellij.git --branch v0.44.3`` 
 
+and running
+
+``cd zellij/``
+``cargo debstatus``
+
+after some updates, we get a large output:
+
+![Screenshot of debstatus](debstatus1.png?raw=true "Optional Title") 
+
 ### Package the dependencies
 
 
@@ -90,7 +99,7 @@ So, I look which Cargo.toml files reference wasmparser (and to which versions):
 > ./crates/wasmi/Cargo.toml:54:simd = ["wasmi_core/simd", "wasmi_ir/simd", "wasmparser/simd"]  
 > ./Cargo.toml:48:wasmparser = { version = "0.228.0", default-features = false }  
 
-The output tells me that the project uses wasmparser v.0.228.0, as expected. I also see the workspace uses the validate and features options, as well as others like std and simd. 
+The output tells me that the project uses wasmparser v.0.228.0, as expected. This is defined at `./Cargo.toml`. I also see the workspace uses the `validate` and `features` options, as well as others like `std` and `simd`. This is in the `./crates/wasmi/Cargo.toml` file. 
 
 I also want to look at the Cargo.lock file, which mentions the exact resolved version of every dependency:
 
@@ -117,10 +126,25 @@ I also want to look at the Cargo.lock file, which mentions the exact resolved ve
 
 Wow, that's quite the picture. wasmi uses 3 different version of wasmparser, possibly for other dependencies that need specific versions. There's also wasmparser-nostd, which we may have to look at later.
 
-Why the different versions? I can spend hours digging the code, or ask the maintainers. So I opened [an issue with some questions](https://github.com/wasmi-labs/wasmi/issues/1858).
+Why the different versions? I can spend hours digging the code, or ask the maintainers. So I opened [an issue with some questions](https://github.com/wasmi-labs/wasmi/issues/1858). The maintainer is happy to see `wasmparser` updated, but says the changes are substantial and possibly complex. That's fine. 
 
-Next update is when they reply, hopefully. 
-- May 20th 2026 
+I'll start with the simplest route: changing version in `./Cargo.toml`. At line 48, I changed
+
+``wasmparser = { version = "0.228.0", default-features = false }``
+
+to
+
+``wasmparser = { version = "0.239.0", default-features = false }``
+
+to actually apply the update, I'll run ``cargo`` and see if everything compiles:
+
+``cargo build``
+
+`Cargo.toml` would be read, then cargo will download `wasmparser 0.239.0`, update `Cargo.lock` and compile.
+
+The run ended with a list of interesting [errors](wasmi_build.log). There are at least 7 errors, pointing to changes in functions, missing methods and types. This means that `wasmparser` changed its API (Application Programming Interface) between the versions, hence, it's a **breaking change**. We'll need to change the code of `wasmi` to match the new `wasmparser` API.
+
+**Errors 1 & 2**
 
 [^1]: [Debian Intro to packaging](https://wiki.debian.org/Packaging/Intro)
 [^2]: [Debian Mentors FAQ: How do I make my first package?](https://wiki.debian.org/DebianMentorsFaq#How_do_I_make_my_first_package.3F)
