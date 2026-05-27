@@ -29,7 +29,7 @@ The complete walkthrough depends on what you're packaging - the language it's wr
 
 ## Put a package together
 
-6. [List the dependency Tree](#list-the-dependency-tree). 
+6. [List the Dependency Tree](#list-the-dependency-tree). 
 7. Package the dependencies - or
 8. Bundle everything into a package
 9. Publish the repository in the Debian unstable version 
